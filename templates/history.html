@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Message History{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📜 Message History</h2>
+
+{% if records %}
+<table class="table table-bordered table-striped align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>Image</th>
+      <th>Filename</th>
+      <th>Timestamp</th>
+      <th>Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for image_path, timestamp in records %}
+    <tr>
+      <td><img src="/{{ image_path }}" alt="Stego Image" width="80" class="img-thumbnail"></td>
+      <td>{{ image_path.split('/')[-1] }}</td>
+      <td>{{ timestamp }}</td>
+      <td><a href="/{{ image_path }}" class="btn btn-sm btn-outline-primary" download>📥</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="mt-3">
+  <a href="/export/csv" class="btn btn-success">📊 Export CSV</a>
+  <a href="/export/pdf" class="btn btn-primary">📄 Export PDF</a>
+</div>
+{% else %}
+<div class="alert alert-warning">No messages found yet.</div>
+{% endif %}
+
+{% endblock %}

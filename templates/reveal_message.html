@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Reveal Message{% endblock %}
+
+{% block content %}
+<div class="card p-4 shadow" style="max-width: 600px; margin: auto;">
+  <h3 class="mb-4">🔍 Reveal a Hidden Message</h3>
+
+  <form method="post">
+    <div class="mb-3">
+      <label>Select Hidden Image</label>
+      <select name="image_name" class="form-select" required>
+        <option value="" disabled selected>-- Choose image --</option>
+        {% for img in images %}
+          <option value="{{ img }}">{{ img.split('/')[-1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <button class="btn btn-success w-100">Reveal Message</button>
+  </form>
+
+  {% if message %}
+  <div class="alert alert-info mt-4">
+    <h5>🔓 Decrypted Message:</h5>
+    <p>{{ message }}</p>
+  </div>
+  {% endif %}
+
+  <p class="text-danger mt-2">{{ get_flashed_messages()[0] if get_flashed_messages() else '' }}</p>
+</div>
+{% endblock %}

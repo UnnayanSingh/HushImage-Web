@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="card p-4 shadow">
+  <h2 class="mb-4">👋 Welcome, {{ username }}</h2>
+  <p>Select an option from the navigation bar above:</p>
+  <ul class="list-group">
+    <li class="list-group-item"><a href="/hide">🖼 Hide a Secret Message</a></li>
+    <li class="list-group-item"><a href="/reveal">🔍 Reveal a Hidden Message</a></li>
+    <li class="list-group-item"><a href="/history">📜 View Message History</a></li>
+    <li class="list-group-item"><a href="/logout" class="text-danger">🚪 Logout</a></li>
+  </ul>
+</div>
+{% endblock %}

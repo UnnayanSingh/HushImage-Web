@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Hide Message{% endblock %}
+
+{% block content %}
+<div class="card p-4 shadow" style="max-width: 600px; margin: auto;">
+  <h3 class="mb-4">🖼 Hide a Secret Message</h3>
+
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label>Select Image</label>
+      <input type="file" name="image" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Save As Filename</label>
+      <input type="text" name="custom_filename" class="form-control" placeholder="e.g. secret_file" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Message</label>
+      <textarea name="message" rows="4" class="form-control" required></textarea>
+    </div>
+
+    <button class="btn btn-primary">Hide Message</button>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <div class="alert alert-{{ category }} mt-3" role="alert">{{ msg|safe }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+<script>
+  document.querySelector('input[name=\"image\"]').addEventListener('change', function(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      const img = document.getElementById('preview');
+      img.src = reader.result;
+      img.style.display = 'block';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  });
+</script>
+{% endblock %}
