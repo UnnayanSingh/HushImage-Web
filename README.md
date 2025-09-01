@@ -88,7 +88,8 @@ CREATE TABLE messages (
 ---
 
 ## 👨‍💻 Author
-- GitHub: UnnayanSingh
-- LinkedIn: https://www.linkedin.com/in/unnayan-singh-2b9062289
-- Email: unnayansingh2005@gmail.com
+- [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/UnnayanSingh)
+- [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/unnayan-singh-2b9062289)
+- [![Gmail](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:unnayansingh2005@gmail.com)  
+
 ---
