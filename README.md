@@ -1,20 +1,19 @@
-# 🖼️ Image Steganography Web App (with Flask + MySQL)
+# 🖼️ HushImage-Web (with Python + Flask + MySQL)
 
 This is a full-featured web application that lets users securely **hide and reveal messages inside images using steganography**, along with secure login, password encryption, and download/export features.
 
 ---
 
 ## 🚀 Features
-
-✅ User authentication (Login/Register)  
-✅ AES encryption with image steganography  
-✅ Hide messages in PNG images  
-✅ Auto-delete original upload for storage security  
-✅ Reveal secret message using password  
-✅ User history with image previews  
-✅ Export history as CSV or PDF  
-✅ Change password functionality  
-✅ Dark mode toggle for better UX  
+- User authentication (Login/Register)
+- AES encryption with image steganography
+- Hide messages in PNG images
+- Auto-delete original upload for storage security
+- Reveal secret message using password
+- User history with image previews
+- Export history as CSV or PDF
+- Change password functionality
+- Dark mode toggle for better UX  
 
 ---
 
@@ -40,14 +39,15 @@ This is a full-featured web application that lets users securely **hide and reve
 ```bash
 git clone https://github.com/your-username/image-steganography-flask
 cd image-steganography-flask
+```
 
 2. **Install dependencies:**
 
-pip install flask mysqlclient pillow reportlab
+```pip install flask mysqlclient pillow reportlab```
 
 
 3. **Setup MySQL Database:**
-CREATE DATABASE steganography_app;
+```CREATE DATABASE steganography_app;
 USE steganography_app;
 
 CREATE TABLE users (
@@ -64,16 +64,31 @@ CREATE TABLE messages (
   timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
-
+```
 
 4. **Set config in config.py:**
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'your_mysql_password'
-MYSQL_DB = 'steganography_app'
-SECRET_KEY = 'your_secret_key_here'
+```MYSQL_HOST = 'localhost'
+  MYSQL_USER = 'root'
+  MYSQL_PASSWORD = 'your_mysql_password'
+  MYSQL_DB = 'steganography_app'
+  SECRET_KEY = 'your_secret_key_here'
+```
 
 5. **Run the app:**
-python app.py
+  ```python app.py```
 
+---
 
+## 🛡️ Security Notes
+- All passwords are securely hashed before storage
+- Uploaded images are auto-deleted after use
+- Message size should not exceed the capacity of the image
+- This project is intended for educational purposes
+
+---
+
+## 👨‍💻 Author
+- GitHub: UnnayanSingh
+- LinkedIn: https://www.linkedin.com/in/unnayan-singh-2b9062289
+- Email: unnayansingh2005@gmail.com
+---
