@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session, flash, sen
 from markupsafe import Markup
 import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
-from config import SECRET_KEY, MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB
+from config import *
 from stegano_utils import hide_message_in_image, reveal_message_from_image
 import uuid
 import os
@@ -11,21 +11,13 @@ import time
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
-# Flask app setup
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
-# Uploads folder
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Database connection (using config values from .env)
-db = MySQLdb.connect(
-    host=MYSQL_HOST,
-    user=MYSQL_USER,
-    passwd=MYSQL_PASSWORD,
-    db=MYSQL_DB
-)
+db = MySQLdb.connect(host=MYSQL_HOST, user=MYSQL_USER, password=MYSQL_PASSWORD, database=MYSQL_DB)
 cursor = db.cursor()
 
 @app.route('/')
@@ -98,10 +90,8 @@ def hide():
                 os.remove(input_path)
 
             relative_path = f'static/uploads/{output_filename}'
-            cursor.execute(
-                "INSERT INTO messages (user_id, encrypted_msg, image_path) VALUES (%s, %s, %s)",
-                (session['user_id'], "Encrypted in image", relative_path)
-            )
+            cursor.execute("INSERT INTO messages (user_id, encrypted_msg, image_path) VALUES (%s, %s, %s)",
+                           (session['user_id'], "Encrypted in image", relative_path))
             db.commit()
 
             download_link = f'<a href="/{relative_path}" download>📥 Click here to download</a>'
@@ -230,6 +220,5 @@ def logout():
     session.clear()
     return redirect('/login')
 
-if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
+if __name__ == '__main__':
+    app.run(debug=True)
